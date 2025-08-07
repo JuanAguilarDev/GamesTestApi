@@ -20,10 +20,10 @@ struct AsyncClientRequestModel {
 
 struct RequestModelBuilder {
     private let model: AsyncClientRequestModel
-
+    
     init() { self.model = AsyncClientRequestModel() }
     private init(model: AsyncClientRequestModel) { self.model = model }
-
+    
     func service(_ service: Service) -> Self {
         var m = model; m.service = service; return Self(model: m)
     }
@@ -43,4 +43,33 @@ struct RequestModelBuilder {
         var m = model; m.key2 = k; return Self(model: m)
     }
     func build() -> AsyncClientRequestModel { model }
+}
+
+// MARK: Generic Request Enums
+enum Service {
+    case GET_GAMES
+    
+    var path: String {
+        switch self {
+        case .GET_GAMES:
+            return "/games"
+        }
+    }
+}
+
+enum HttpMethod: String {
+    case GET, POST, PUT, DELETE
+    
+    var method: Alamofire.HTTPMethod {
+        switch self {
+        case .GET:
+            return .get
+        case .POST:
+            return .post
+        case .PUT:
+            return .put
+        case .DELETE:
+            return .delete
+        }
+    }
 }

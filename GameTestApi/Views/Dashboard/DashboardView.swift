@@ -12,16 +12,19 @@ struct DashboardView: View {
     
     var body: some View {
         ScrollView {
-             LazyVGrid(columns: [GridItem(.flexible()), GridItem(.flexible())], spacing: 16) {
-                 ForEach(viewModel.games, id: \.id) { game in
-                 GameCard(game: game)
-               }
-             }
-             .padding()
-           }
+            LazyVGrid(columns: [GridItem(.flexible()), GridItem(.flexible())], spacing: 16) {
+                ForEach(viewModel.games, id: \.id) { game in
+                    GameCard(game: game)
+                }
+            }
+            .padding()
+        }
         .task {
             try? await viewModel.fetchGames()
         }
+        .navigationTitle("Dashboard")
+        .navigationBarTitleDisplayMode(.large)
+        .navigationBarBackButtonHidden(true)
     }
 }
 
