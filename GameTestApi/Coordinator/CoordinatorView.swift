@@ -12,9 +12,13 @@ struct CoordinatorView: View {
     
     var body: some View {
         NavigationStack(path: $coordinator.path) {
-            DashboardView(viewModel: DashboardViewModel(and: coordinator))
+            SplashView(viewModel: SplashViewViewModel(and: coordinator))
                 .navigationDestination(for: Route.self, destination: { route in
                     switch route {
+                    case .dashboard:
+                        DashboardView(viewModel: DashboardViewModel(and: coordinator))
+                    case .error(let errorMessage):
+                        ErrorView(viewModel: ErrorViewModel(with: errorMessage, and: coordinator))
                     default:
                         DashboardView(viewModel: DashboardViewModel(and: coordinator))
                     }
