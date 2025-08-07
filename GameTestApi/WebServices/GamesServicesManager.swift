@@ -20,8 +20,8 @@ final public class GamesServicesManager : GamesServicesManagerProtocol {
         
         // 2. Llamar al cliente de red
         let games: [GameModel] = try await AsyncClientRequest.shared
-        .callService(requestModel: config, responseType: [GameModel].self)
-
+            .callService(requestModel: config, responseType: [GameModel].self)
+        
         return games
-      }
+    }
 }

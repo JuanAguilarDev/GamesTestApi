@@ -5,32 +5,27 @@
 //  Created by Juan Aguilar on 04/08/25.
 //
 
-import Alamofire
+import Foundation
 
-enum Service {
-    case GET_GAMES
+enum ErrorEnum: LocalizedError, Equatable {
+    case networkError
+    case decodingError
+    case serverError(code: Int)
+    case custom(message: String)
+    case unknown
     
-    var path: String {
+    var errorDescription: String {
         switch self {
-        case .GET_GAMES:
-            return "/games"
-        }
-    }
-}
-
-enum HttpMethod: String {
-    case GET, POST, PUT, DELETE
-    
-    var method: Alamofire.HTTPMethod {
-        switch self {
-        case .GET:
-            return .get
-        case .POST:
-            return .post
-        case .PUT:
-            return .put
-        case .DELETE:
-            return .delete
+        case .networkError:
+            return "No hay conexión a internet. Por favor, verifica tu red."
+        case .decodingError:
+            return "Ocurrió un error al procesar los datos."
+        case .serverError(let code):
+            return "Error del servidor. Código: \(code)"
+        case .custom(let message):
+            return message
+        case .unknown:
+            return "Ocurrió un error desconocido. Inténtalo de nuevo."
         }
     }
 }
