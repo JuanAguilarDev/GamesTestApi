@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct GameModel: Decodable, Sendable {
+struct GameModel: Decodable, Sendable, Hashable {
     let id: Int
     let title: String
     let thumbnail: String
@@ -19,7 +19,7 @@ struct GameModel: Decodable, Sendable {
     let developer: String?
     let releaseDate: String
     let freeToGameProfileUrl: String?
-
+    
     enum CodingKeys: String, CodingKey {
         case id, title, thumbnail, genre, platform
         case shortDescription = "short_description"
