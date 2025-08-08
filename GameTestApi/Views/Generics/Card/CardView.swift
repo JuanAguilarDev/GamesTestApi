@@ -73,7 +73,7 @@ struct CardView: View {
         .frame(maxWidth: .infinity)
         .background(.white)
         .clipShape(RoundedRectangle(cornerRadius: 20))
-        .shadow(radius: 8)
+        .shadow(radius: 2)
     }
 }
 
