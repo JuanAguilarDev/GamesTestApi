@@ -21,7 +21,7 @@ actor AsyncClientRequest {
     
     func callService<T: Decodable>(
         requestModel: AsyncClientRequestModel,
-        responseType: T.Type,
+        responseType: T.Type
     ) async throws -> T {
         
         var url: String = getUrl(requestModel: requestModel)
