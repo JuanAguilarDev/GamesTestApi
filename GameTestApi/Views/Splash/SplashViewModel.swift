@@ -8,16 +8,19 @@
 import SwiftUI
 
 @Observable class SplashViewViewModel : ObservableObject {
+    // MARK: - General Properties
     var games: [GameModel] = []
-    var lottieManager: LottieManager = LottieManager()
     var isLoading: Bool = true
     var errorMessage: String = ""
-    
     unowned let coordinator: GamesCoordinator
-    private let serviceManager: GamesServicesManager
     
-    init(with manager: GamesServicesManager = GamesServicesManager(), and coordinator: GamesCoordinator) {
-        self.serviceManager = manager
+    // MARK: - Managers
+    var lottieManager: LottieManager = LottieManager()
+    private let localDataManager: GameDataManager
+    private let serviceManager: GamesServicesManager = GamesServicesManager()
+    
+    init(with manager: GameDataManager, and coordinator: GamesCoordinator) {
+        self.localDataManager = manager
         self.coordinator = coordinator
     }
     
@@ -28,12 +31,31 @@ import SwiftUI
             async let animation: () = lottieManager.play(animation: "loading", for: 2.5)
             
             let (result, _) = await (fetchGamesTask, animation)
-            handle(result)
+            await handle(result)
         }
     }
     
     @MainActor
-    private func handle(_ result: Result<[GameModel], Error>) {
+    private func saveGames() async {
+        await withTaskGroup(of: Void.self){ group in
+            for game in games {
+                group.addTask { [weak self] in
+                    guard let self = self else { return }
+                    
+                    do {
+                        try await localDataManager.create(game)
+                    } catch {
+                        fatalError(error.localizedDescription)
+                    }
+                    
+                }
+            }
+        }
+        coordinator.goToDashboard()
+    }
+    
+    @MainActor
+    private func handle(_ result: Result<[GameModel], Error>) async {
         defer {
             isLoading = false
             lottieManager.stop()
@@ -42,7 +64,7 @@ import SwiftUI
         switch result {
         case .success(let games):
             self.games = games
-            coordinator.goToDashboard()
+            await saveGames()
         case .failure(let error):
             errorMessage = error.localizedDescription.isEmpty ? ErrorEnum.serverError(code: 400).errorDescription : error.localizedDescription
             coordinator.goToError(with: errorMessage)
@@ -58,5 +80,4 @@ import SwiftUI
             return .failure(error)
         }
     }
-    
 }

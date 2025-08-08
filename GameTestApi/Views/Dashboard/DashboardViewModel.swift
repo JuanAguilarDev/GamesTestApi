@@ -9,19 +9,31 @@ import SwiftUI
 
 @Observable class DashboardViewModel : ObservableObject {
     var games: [GameModel] = []
-    let manager: GamesServicesManager
-    unowned let coordinator: GamesCoordinator
+    let manager: GameDataManager
+    unowned var coordinator: GamesCoordinator
     
-    init(with manager: GamesServicesManager = GamesServicesManager(), and coordinator: GamesCoordinator) {
+    init(with manager: GameDataManager, and coordinator: GamesCoordinator) {
         self.manager = manager
         self.coordinator = coordinator
     }
     
     func fetchGames() async throws {
-        games = try await manager.fetchGames()
+        games = try await manager.fetchAllSortedByTitle()
     }
     
-    func showDetail() {
-        //coordinator.push(.personDetail(person: person))
+    func updateDescription(game: GameModel, with newDescription: String) async {
+        do {
+            try await manager.updateDescription(for: game.id, to: newDescription)
+        } catch {
+            print("No se pudo actualizar la descripcion")
+        }
+    }
+    
+    func deleteGame(game: GameModel) async {
+        do {
+            try await manager.delete(game)
+        } catch {
+            print("No se pudo eliminar el juego")
+        }
     }
 }
