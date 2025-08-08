@@ -40,15 +40,17 @@ videjuegos, el usuario podra interactuar con la información del listado e inclu
 
 ### Justificación de las tecnologias utilizadas
 
-**- Swift 6**: Aprovechar de la mejor manera las nuevas funcionalidades de swift, principalmente la concurrencia (manejo de los hilos de la app) y los actores.
-**- SwiftUI**: Utilizar el framework visual más reciente que nos ofrece swift para aprovechar sus virtudes.
-**- MVVM Architecture**: Mejora la organización y visualización de la implementación del código, además de mantener la logica separada.
-**- SwiftData**: Permite almacenar los datos de manera local de una forma más sencilla y permite una mejor manipulación de los datos.
-**- Async/Await**: Permite manejar la lógica de red, I/O, y actualización de estado asincrónica de manera legible y mantenible, además de que ahorra problemas de concurrencia como data races y dead locks.
-**- Xcode 16.2**: Una de las versiones actuales más estables para xcode.
-**- iOS 18+**: Aprovechar las virtudes de la versión más reciente de iOS antes del lanzamiento del iOS26
-**- Alamofire**: Realmente no tengo una justificación real sobre el uso de alamofire, simplemente quería volver a usarlo en una aplicación porque me parece más legible aunque sea de terceros.
-**- Lottie **: Presentación de animaciones de manera sencilla.
+- **Swift 6**: Aprovechar de la mejor manera las nuevas funcionalidades de swift, principalmente la concurrencia (manejo de los hilos de la app) y los actores.
+- **SwiftUI**: Utilizar el framework visual más reciente que nos ofrece swift para aprovechar sus virtudes.
+- **MVVM Architecture**: Mejora la organización y visualización de la implementación del código, además de mantener la logica separada.
+- **SwiftData**: Permite almacenar los datos de manera local de una forma más sencilla y permite una mejor manipulación de los datos.
+- **Async/Await**: Permite manejar la lógica de red, I/O, y actualización de estado asincrónica de manera legible y mantenible, además de que ahorra problemas de concurrencia como data races y dead locks.
+- **Xcode 16.2**: Una de las versiones actuales más estables para xcode.
+- **iOS 18+**: Aprovechar las virtudes de la versión más reciente de iOS antes del lanzamiento del iOS26
+- **Alamofire**: Realmente no tengo una justificación real sobre el uso de alamofire, simplemente quería volver a usarlo en una aplicación porque me parece más legible aunque sea de terceros.
+- **Lottie**: Presentación de animaciones de manera sencilla.
+- **SPM**: Es más rápido, más limpio, no requiere herramientas externas, y se mantiene por Apple.
+
 
 ## 📦 Estructura del proyecto
 ```text
