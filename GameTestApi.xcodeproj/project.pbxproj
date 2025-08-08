@@ -7,10 +7,23 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		0D41F7A42E448C08001C5169 /* SQLite in Frameworks */ = {isa = PBXBuildFile; productRef = 0D41F7A32E448C08001C5169 /* SQLite */; };
 		0DC6CB0C2E446DC700BD9710 /* Lottie in Frameworks */ = {isa = PBXBuildFile; productRef = 0DC6CB0B2E446DC700BD9710 /* Lottie */; };
 		0DF7813D2E431BFA00AE76D7 /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = 0DF7813C2E431BFA00AE76D7 /* Alamofire */; };
 /* End PBXBuildFile section */
+
+/* Begin PBXBuildRule section */
+		0D9AB67C2E45DE3100E87636 /* PBXBuildRule */ = {
+			isa = PBXBuildRule;
+			compilerSpec = com.apple.compilers.proxy.script;
+			fileType = sourcecode.swift;
+			inputFiles = (
+			);
+			isEditable = 1;
+			outputFiles = (
+			);
+			script = "# $(SWIFT_EXEC)\n";
+		};
+/* End PBXBuildRule section */
 
 /* Begin PBXContainerItemProxy section */
 		0DF780E72E4319E000AE76D7 /* PBXContainerItemProxy */ = {
@@ -58,7 +71,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				0D41F7A42E448C08001C5169 /* SQLite in Frameworks */,
 				0DF7813D2E431BFA00AE76D7 /* Alamofire in Frameworks */,
 				0DC6CB0C2E446DC700BD9710 /* Lottie in Frameworks */,
 			);
@@ -123,7 +135,6 @@
 			packageProductDependencies = (
 				0DF7813C2E431BFA00AE76D7 /* Alamofire */,
 				0DC6CB0B2E446DC700BD9710 /* Lottie */,
-				0D41F7A32E448C08001C5169 /* SQLite */,
 			);
 			productName = GameTestApi;
 			productReference = 0DF780D92E4319DF00AE76D7 /* GameTestApi.app */;
@@ -138,6 +149,7 @@
 				0DF780E42E4319E000AE76D7 /* Resources */,
 			);
 			buildRules = (
+				0D9AB67C2E45DE3100E87636 /* PBXBuildRule */,
 			);
 			dependencies = (
 				0DF780E82E4319E000AE76D7 /* PBXTargetDependency */,
@@ -210,7 +222,6 @@
 			packageReferences = (
 				0DF7813B2E431BFA00AE76D7 /* XCRemoteSwiftPackageReference "Alamofire" */,
 				0DC6CB0A2E446DC700BD9710 /* XCRemoteSwiftPackageReference "lottie-ios" */,
-				0D41F7A22E448C08001C5169 /* XCRemoteSwiftPackageReference "SQLite" */,
 			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = 0DF780DA2E4319DF00AE76D7 /* Products */;
@@ -481,7 +492,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 896897HK45;
 				GENERATE_INFOPLIST_FILE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 18.5;
+				IPHONEOS_DEPLOYMENT_TARGET = 18.0;
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = juandev.com.GameTestApiTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -500,7 +511,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 896897HK45;
 				GENERATE_INFOPLIST_FILE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 18.5;
+				IPHONEOS_DEPLOYMENT_TARGET = 18.0;
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = juandev.com.GameTestApiTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -587,14 +598,6 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
-		0D41F7A22E448C08001C5169 /* XCRemoteSwiftPackageReference "SQLite" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/stephencelis/SQLite.swift";
-			requirement = {
-				kind = exactVersion;
-				version = 0.15.4;
-			};
-		};
 		0DC6CB0A2E446DC700BD9710 /* XCRemoteSwiftPackageReference "lottie-ios" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/airbnb/lottie-ios";
@@ -614,11 +617,6 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
-		0D41F7A32E448C08001C5169 /* SQLite */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 0D41F7A22E448C08001C5169 /* XCRemoteSwiftPackageReference "SQLite" */;
-			productName = SQLite;
-		};
 		0DC6CB0B2E446DC700BD9710 /* Lottie */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 0DC6CB0A2E446DC700BD9710 /* XCRemoteSwiftPackageReference "lottie-ios" */;
