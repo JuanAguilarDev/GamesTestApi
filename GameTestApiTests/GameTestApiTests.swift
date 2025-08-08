@@ -9,6 +9,17 @@ import XCTest
 @testable import GameTestApi
 
 final class GameTestApiTests: XCTestCase {
+    
+    func testFetchGamesReturnsGames() async throws {
+        let service = GamesServicesManager()
+        
+        do {
+            let games = try await service.fetchGames()
+            XCTAssertFalse(games.isEmpty, "La lista de juegos no debería estar vacía")
+        } catch {
+            XCTFail("Fallo al obtener juegos: \(error)")
+        }
+    }
 
     override func setUpWithError() throws {
         // Put setup code here. This method is called before the invocation of each test method in the class.
